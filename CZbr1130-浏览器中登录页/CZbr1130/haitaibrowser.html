@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>沧州银行登录页</title>
+        <link rel="stylesheet" href="css/czyh/login.css">
+        
+        <link rel="stylesheet" href="css/czyh/index.css">
+        <link rel="stylesheet" href="css/czyh/reset.css">
+        <link rel="stylesheet" href="css/czyh/vscarousel.min.css">
+        <link rel="stylesheet" href="css/czyh/prism.css">
+<!--        <link rel="stylesheet" href="../static/public/bootstrap/bootbox/bootbox.min.css">-->
+        <link rel="stylesheet" href="js/czyh/bootstrap.css">
+        <script src="js/czyh/writeObject.js"></script>
+        <style>
+            @font-face {
+                font-family: mFont;
+                src: url('fonts/FZLTHJW.TTF');
+            }
+            *{
+                font-family: mFont;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mainPage">
+            <!-- <div id="changeBgDiv">请设置轮播图容器的高度 -->
+                <div id="vsCarousel2" class="vsCarousel m-show2">
+                  <!-- 轮播图元素列表 -->
+                  <ul class="vsCarousel-wrapper"></ul>
+                   <!-- 前进后退按钮 -->
+                  <!-- <div class="vsCarousel-button">
+                    <button class="vsCarousel-button-prev"></button>
+                    <button class="vsCarousel-button-next"></button>
+                  </div> -->
+                  <!--分页器
+                  <div class="vsCarousel-page">
+                    <button class="vsCarousel-page-play"></button>
+                    <button class="vsCarousel-page-button" data-index="1"></button>
+                    <button class="vsCarousel-page-button" data-index="2"></button>
+                    <button class="vsCarousel-page-buitton" data-index="3"></button>
+                  </div> -->
+                </div>
+            <!-- </div> -->
+            <div id="loginContent">
+                <div id="loginTitleDiv">
+                    <div class="loginTitle fl loginSelected" onclick="changeToPweb()" logintype="person" value="1">个人网银</div>
+                    <div class="loginTitle fr" onclick="changeToEweb()" logintype="company" value="2">企业网银</div>
+                </div>
+                <div id="loginDetail">
+                    <div id="loginPage_person" class="loginPage">
+                        <div class="loginInputDiv">
+                            <img src="images/czyh/input_user.png" class="input_front_img">
+                            <input id="LoginId" type="text" class="loginInput" onkeydown="keyDownLogin()" maxlength="20" autocomplete="off" placeholder="手机号或者证件号"/>
+                        </div>
+                        <div class="loginInputDiv">
+                            <img src="./images/czyh/input_pwd.png" class="input_front_img">
+                            <input id="Password" type="hidden" name="Password" />
+                            <script type="text/javascript">writePassObject("powerpass",{"maxLength":20,"minLength":6,"accepts":"[:graph:]+"});</script>
+                        </div>
+                        <div id="tokenImgDivId" class="loginInputDiv mb5" style="display: none;">
+                            <img src="images/czyh/verifyCode.png" class="input_front_img">
+                            <input id="_vTokenName" type="text" class="tokenInputDiv" onkeydown="keyDownLogin()"  maxlength="4" minlength='4' autocomplete="off" name="_vTokenName" placeholder="图形验证码"/>
+                            <img id="tokenImgId" src="" class="genTokenImgClass" name="tokenImg" onclick="reloadTokenImg('tokenImgId')" alt="点击刷新" />
+                            <a href="javascript:void(0);" onclick="reloadTokenImg('tokenImgId');" class="blue_links">换一张</a> 
+                        </div>
+                        <div id="EEEE" class="errorTitle"></div>
+                        <div id="loginPage1Options">
+                            <!--<div class="loginOption fl" onclick="commGoTargets(1)">网银助手</div>
+                            <div class="loginOptionLine fl">|</div>-->
+                            <div class="loginOption fl" onclick="commGoTargets(2)">找回密码</div>
+                            <div class="loginOptionLine fl">|</div>
+							<div class="loginOption fl" onclick="commGoTargets(6)">安全指引</div>
+                            <div class="loginOptionLine fl">|</div>
+                            <!--<div class="loginOption fl" onclick="commGoTargets(3)">模拟操作</div>
+                            <div class="loginOptionLine fl">|</div>-->
+                            <div class="loginOption fl" onclick="commGoTargets(4)">回单验证</div>
+                        </div>
+                        <input id="loginSubmitId" class="loginInputBtn" onclick="loginPwebSumbit()" type="button" value="登录" />
+                        <div class="loginDesc">
+                            <div class="loginDescLine">温馨提示：</div>
+                            <div class="loginDescLine">1、请使用手机号码或者证件号登陆</div>
+                            <div class="loginDescLine">2、如未开通手机银行，首次登录仅限证件号</div>
+                        </div>
+                    </div>
+                    <div id="loginPage_company" class="loginPage">
+                        <input type="hidden" name="CSIISignature" id="CSIISignature" value="" />
+                        <input type="hidden" name="LoginType" id="LoginType" value="C" />
+                        <input type="hidden" name="_CertBase64" id="_CertBase64" value="" />
+                        <input type="hidden" id="CertCN" name="CertCN" value=""/>
+                        <input type="hidden" id="CifNo" name="CifNo" value=""/>
+                        <input type="hidden" id="LoginEWEBId" name="LoginEWEBId" value=""/>
+                        <input type="hidden" id="CifName" name="CifName" value=""/>
+                        <input type="hidden" id="UserName" name="UserName" value=""/>
+                        <input type="hidden" id="_MacAddress" name="_MacAddress" value=""/>
+                        <input type="hidden" id="_locale" name="_locale" value="zh_CN"/>
+						<input type="hidden" id="_IsGuoMi" name="_IsGuoMi" value="Y"/>
+					    <div class="loginInputDiv">
+                            <img src="images/czyh/input_company.png" class="input_front_img">
+                            <input type="text" class="loginInputEweb" id="CifName_div" name="CifName_div" placeholder="请输入企业名称" readonly="readonly"/>
+                        </div>
+                        <div class="loginInputDiv">
+                            <img src="images/czyh/input_user.png" class="input_front_img">
+                            <input type="text" class="loginInputEweb" id="UserName_div" name="UserName_div" placeholder="请输入操作员姓名" readonly="readonly"/>
+                        </div>
+                        <div id="EWBEEE" class="errorEWEBTitle"></div>
+                        <input id="loginEwebSubmitId" type="button" class="loginBtn2 noborder" value="立即登录" onclick="loginEwebSubmit()" />
+                        <div class="loginDesc">
+                            <div class="loginDescLine">注：客户登录时，需要插入Ukey；插入Ukey后，回显企业名称、操作员姓名，点击登录，验证Ukey密码。</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="depositImg">
+                    <img src="images/czyh/deposit_identification.png">
+                </div>
+            </div>
+            <!--公告-->
+            <div id="noticeDiv" class="noticeDiv">
+                <div id="noticeList"></div>
+            </div>
+            <div id="bottomPage">
+                <div class="bottomPageDiv">
+					<ul class="bottomList">
+						<li onclick="commGoTargets(7)">防电信诈骗专区</li>
+                        <li class="partLine">|</li>
+						<li onclick="commGoTargets(9)">下载中心</li>
+                        <li class="partLine">|</li>
+						<li onclick="commGoTargets(10)">联系我们</li>
+					</ul>
+                    <!--<img src="images/czyh/bottom_nav.png" id="bottom_nav" class="fl">
+                    <div id="bottom_nav_desc" class="fl">
+                        <div class="bottom_title">新手指南</div>
+                        <div class="bottom_content">
+                            <div class="bottom_content_link fl" onclick="commGoTargets(5)">安装及使用说明</div>
+                            <div class="bottom_content_line fl">|</div>
+                            <div class="bottom_content_link fl" onclick="commGoTargets(6)">安全指引</div>
+                            <div class="bottom_content_link fl" onclick="commGoTargets(7)">防电信诈骗专区</div>
+                            <div class="bottom_content_line fl">|</div>
+                            <div class="bottom_content_link fl" onclick="commGoTargets(8)">下载网银助手</div>
+                        </div>
+                    </div>
+                    <img src="images/czyh/bottom_help.png" id="bottom_help" class="fl">
+                    <div id="bottom_nav_desc" class="fl">
+                        <div class="bottom_title">帮助</div>
+                        <div class="bottom_content">
+                            <div class="bottom_content_link fl" onclick="commGoTargets(9)">下载中心</div>
+                        </div>
+                    </div>
+                    <div class="qrcode1 fl">
+                        <img src="images/czyh/bottom_mobile.png">
+                        <div class="qrtitle">手机银行</div>
+                    </div>
+                    <div class="qrcode2 fl">
+                        <img src="images/czyh/bottom_wx.png">
+                        <div class="qrtitle">微信银行</div>
+                    </div>
+                    <div id="bottom_desc" class="fl">
+                        <div class="bottom_desc_line">全国服务热线：96328或4006126699</div>
+                        <div class="bottom_desc_line">© 版权所有沧州银行 冀ICP备13013818号</div>
+                        <div class="bottom_desc_line">总行地址： 河北省沧州市运河区双金路2号 邮编：061000</div>
+                        <div class="bottom_desc_line">银行官网：www.bankcz.com 冀公网安备 13090302000122号</div>
+                    </div>-->
+                </div>
+            </div>
+
+
+        <div id="detailInformation" class="modal fade" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header my-modal-header">
+                        <span class="modal-title">联系我们</span>
+                    </div>
+                    <div class="modal-body update-modal-body" style="overflow: hidden;">
+                        <div class="qrcode1 fl">
+                            <img src="images/czyh/bottom_mobile.png">
+                            <div class="qrtitle">手机银行</div>
+                        </div>
+                        <div class="qrcode2 fl">
+                            <img src="images/czyh/bottom_wx.png">
+                            <div class="qrtitle">微信银行</div>
+                        </div>
+                        <div id="bottom_desc" class="fl">
+                            <div class="bottom_desc_line">全国服务热线：96328或4006126699</div>
+                            <div class="bottom_desc_line">© 版权所有沧州银行 <a href="https://beian.miit.gov.cn/">冀ICP备13013818号</a></div>
+                            <div class="bottom_desc_line">总行地址： 河北省沧州市运河区双金路2号 邮编：061000</div>
+                            <div class="bottom_desc_line">银行官网：www.bankcz.com 冀公网安备 13090302000122号</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-info">关闭</button>
+                    </div>
+                </div>
+        </div>
+
+
+        </div>
+        <div id="noticeModal" class="modal fade" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header my-modal-header">
+                        <span class="modal-title">公告详情</span>
+                    </div>
+                    <div class="modal-body update-modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="shortLabel">公告标题：</label>
+                                <input type="text" name="noticeTitle" class="form-control noticeTitle"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="shortLabel">公告内容：</label>
+                                <textarea name="noticeContent" style="height: 160px;" class="form-control noticeContent "></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-info">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        <script src="js/czyh/jquery1.8.3.min.js"></script>-->
+        <script src="js/czyh/jquery-1.9.1.js"></script>
+        <script src="js/czyh/bootstrap.js"></script>
+<!--        <script src="../static/public/bootstrap/bootbox/bootbox.min.js"></script>-->
+        <script src="js/czyh/login.js"></script>
+        <script src="js/czyh/textScroll.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/prism.min.js"></script> -->
+        <script src="js/czyh/prism.min.js"></script>
+        <script src="js/czyh/vscarousel.min.js"></script>
+        <!-- <script type="text/javascript">writeUtilObject("utilpass");</script> -->
+        <script>
+            
+            // 个人登录
+            function loginPwebSumbit(){
+				var skipPage="main.do";
+                $("#loginSubmitId").attr("disabled",true).val("登录中，请稍等...");
+                var loginVal = $("#LoginId").val(), 
+                    TokenVal = $("#_vTokenName").val(),
+                    tokenDisplay = $("#tokenImgDivId").css('display');
+                    $('.depositImg').show();
+                if(loginVal == "" || loginVal == null || loginVal == undefined){
+                    $('.depositImg').hide();
+                    $("#loginSubmitId").attr("disabled",false).val("登录");
+                    PEGetElement("EEEE").innerText="[用户名]不能为空";
+                    $("#LoginId").focus().select();
+                    return;
+                }
+                remotePost("GetTimeMillis.do",{},function(data){
+				    data = "" + data;
+                    var MFM = getMFMInput("powerpass", data ,"EEEE", "[Mac地址]");
+                    var powerpass=getPassInput("powerpass", data ,"EEEE", "[登录密码]");
+                    if(powerpass==null||powerpass=="" || powerpass==undefined){
+                        $('.depositImg').hide();
+                        var powerobj = document.getElementById("powerpass");	
+                        powerobj.setTimestamp(data);
+                        var nresult = powerobj.verify();
+                        if(nresult == -1){
+                            error = "[登录密码]不能为空";
+                        }else if(nresult == -2){
+                            error = "[登录密码]输入长度不足";
+                        }else if(nresult == -3){
+                            error = "[登录密码]输入内容不合规";
+                        }else{
+                            error = powerobj.lastError(); 
+                        }
+                        PEGetElement("EEEE").innerText=error;
+                        $("#loginSubmitId").attr("disabled",false).val("登录");
+                        return;
+                    };
+					var loginVal = $("#LoginId").val()
+					if(isSimplePass("powerpass",data,loginVal,"EEEE")){
+						skipPage="SimplePassWord.do";
+					}
+
+                    if(tokenDisplay!=='none' && (TokenVal == "" || TokenVal== undefined || TokenVal == null)){
+                        PEGetElement("EEEE").innerText="[验证码]不能为空";
+                        $("#_vTokenName").focus().select();
+                        $("#loginSubmitId").attr("disabled",false).val("登录");
+                        return;
+                    }
+
+                    var params = {
+                        "LoginId":$("#LoginId").val(),
+                        "Password":powerpass,
+                        "VersionDescribe":navigator.userAgent,
+                        "_MacAddress":MFM,
+                        "_IsGuoMi":"Y",
+                    }
+                    // 上送短信验证码
+                    if(tokenDisplay!=='none'){
+                        params._vTokenName = $("#_vTokenName").val();
+                        remotePost("loginVercode4guomi.do",params,function(data){
+                            $("#loginSubmitId").attr("disabled",false).val("登录");
+                            if(data._RejCode != "000000"){
+                                $("#tokenImgDivId").show();
+                                $('.depositImg').hide();
+                                reloadTokenImg("tokenImgId");
+                                PEGetElement("EEEE").innerText=data._RejMessage; 
+                                return;
+                            }else{
+                                window.location.href = PWEBURLPATH + skipPage
+                            }
+                        })
+                    }else{
+                        remotePost("login4guomi.do",params,function(data){
+                            $("#loginSubmitId").attr("disabled",false).val("登录");
+                            if(data._RejCode != "000000"){
+                                $("#tokenImgDivId").show();
+                                $('.depositImg').hide();
+                                reloadTokenImg("tokenImgId");
+                                PEGetElement("EEEE").innerText=data._RejMessage; 
+                                return;
+                            }else{
+                                window.location.href = PWEBURLPATH + skipPage
+                            }
+                        })
+                    }
+                });
+            }
+
+            // 图形验证码
+            function reloadTokenImg(id){
+                $("#"+id).attr("src",PWEBURLPATH + 'GenTokenImg.do?random='+Math.random());
+            }
+
+            // 键盘回车自动登录并清除错误提示信息
+            function keyDownLogin(event){
+                event = event|| arguments.callee.caller.arguments[0]||window.event;
+                if(event.keyCode == 13){
+                    event.returnValue=false;
+                    event.cancel = true;
+                    loginPwebSumbit();
+                }else{
+                    clearErr('EEEE');
+                    clearErr('EWEBEEE');
+                }
+            }
+
+            // 企业网银
+            var tsEWEB = "";
+            function changeToEweb(){
+                clearErr("EWBEEE");
+                if(!isRegisterediSecurityEWEB()){
+                    if(confirm("尊敬的客户，沧州银行网上银行系统未检测到您的USBKEY数字证书，有可能是以下原因造成的，请按提示操作。\n1、您的操作电脑上没有插入USBKEY;\n2、您的操作电脑没有安装沧州银行“网银助手”，如要安装“网银助手”请直接点击“确定”键，安装中，请关闭浏览器。")){
+                        window.location = getDownLoadPathEWEB();
+                    }
+                }else{
+                    loadCertListEWEB();
+                }
+                remoteEWebPost("Timestamp.do",{},function(data){
+                    tsEWEB = "" + data;
+                    MFMEWEB = getMFMInputEWEB("versionObj", tsEWEB ,"EWBEEE", "[Mac地址]");
+                    $("#_MacAddress").val(MFMEWEB);
+                })
+            }
+
+            // 加载企业证书
+            function loadCertListEWEB(e){
+                $("#loginEwebSubmitId").attr("disabled",true).val("读取证书中，请稍等...");
+                var certList=iesign.getCertList();
+                $(".depositImg").show();
+                if(certList==null || certList==''){
+                    $("#CifName_div").val("");
+                    $("#UserName_div").val("");
+                    $("#loginEwebSubmitId").attr("disabled",false).val("读取证书");
+                    alert("请插入沧州银行企业的UsbKey");
+                    return;
+                }else{
+                    var certinfo = certList.split(";");
+                    for(i=0;i<certinfo.length;i++){
+                        var tempCertCN = certinfo[i].split(",")[0];
+                        if(tempCertCN.indexOf("CZBK019")==-1&&tempCertCN.indexOf("051@")==-1&&tempCertCN.indexOf("041@")==-1&&tempCertCN.indexOf("CZBK018")==-1&&tempCertCN.indexOf("CZBK118")==-1){
+                            certinfo.splice(i--,1);
+                            }
+                        }
+                    if(certinfo==null||certinfo.length==0){
+                        $("#loginEwebSubmitId").attr("disabled",false).val("读取证书");
+                        alert("请插入沧州银行企业的UsbKey");
+                        return;
+                    }
+                    var certCN = certinfo[0].split(",")[0];
+                    if(certinfo.length>2){
+                        for(var i=1;i<certinfo.length-1;i++){
+                            var curCertCN = certinfo[i].split(",")[0];
+                            if(certCN!=curCertCN){
+                                $("#loginEwebSubmitId").attr("disabled",false).val("读取证书");
+                                alert("您插入了多个USBKey,请拔出多余的USBKey");
+                                return;
+                            }
+                        }
+                    }
+                    $("#CertCN").val(certCN);
+                }
+                checkSnEWEB();
+            }
+ 
+            // 检查是否有证书，有则获取
+            function checkSnEWEB(){
+                var params = {
+                    "CertCN" : $("#CertCN").val()
+                }
+                remoteEWebPost("CheckCertSN.do",params, function(data){
+                    if (data){ 
+                        clearErr("EWBEEE");
+                        var mess =data.split(",");
+                        if(mess[0]==null|| mess[0]=="null"|| mess[0]==""){
+                            alert("尊敬的客户，该证书未绑定用户。"); 
+                            $("#loginEwebSubmitId").attr("disabled",false).val("读取证书");
+                            return;
+                        }else{
+                            $("#CifNo").val(mess[0]);
+                            $("#LoginEWEBId").val(mess[2]);
+                            $("#CifName_div").val(mess[3]);
+                            $("#CifName_div").attr("title",mess[3]);
+                            $("#CifName").val(mess[3]);
+                            $("#UserName_div").val(mess[4]);
+                            $("#UserName_div").attr("title",mess[4]);
+                            $("#UserName").val(mess[4]);
+                            $("#loginEwebSubmitId").attr("disabled",false).val("立即登录");
+                        }
+                    }else{
+                        $("#loginEwebSubmitId").attr("disabled",false).val("立即登录");
+                        alert("尊敬的客户，获取用户信息失败。");
+                        return;
+                    }
+                })
+            }
+
+            // 获取签名数据
+            function PESignCZ(data2sign){
+                var certList=iesign.getCertList();
+                if(certList==null||certList==''){
+                    $("#loginEwebSubmitId").attr("disabled",false).val("立即登录");
+                    alert("请插入沧州银行企业的UsbKey");
+                    return false;
+                }else{
+                    var hashAlgorithm="sha1";
+                    var certinfo = certList.split(";");
+                    for(i=0;i<certinfo.length;i++){
+                        var tempCertCN = certinfo[i].split(",")[0];
+                        if(tempCertCN.indexOf("CZBK019")==-1&&tempCertCN.indexOf("051@")==-1&&tempCertCN.indexOf("041@")==-1&&tempCertCN.indexOf("CZBK018")==-1&&tempCertCN.indexOf("CZBK118")==-1){
+                            certinfo.splice(i--,1);
+                        }
+                    }
+                    if(certinfo==null||certinfo.length==0){
+                        $("#loginEwebSubmitId").attr("disabled",false).val("立即登录");
+                        alert("请插入沧州银行企业的UsbKey");
+                        return;
+                    }
+                    var signCert = certinfo[0];
+                    var certCN = signCert.split(",")[0];
+                    if(certinfo.length>1){
+                        for(var i=1;i<certinfo.length-1;i++){
+                            if(certCN!=certinfo[i].split(",")[0]){
+                                $("#loginEwebSubmitId").attr("disabled",false).val("立即登录");
+                                alert("您插入了多个USBKey,请拔出多余的USBKey");
+                                return false;
+                            }
+                        }
+                        signCert = certinfo[1];
+                        hashAlgorithm="sm3";
+                    }
+                    // 判断是否为本人证书  登录前用不到该逻辑，特意注释
+                    // var userCertDn = '${_USER.userCert.dn}';
+                    // if(userCertDn&&(userCertDn.indexOf(signCert.split(",")[0].split("=")[1])==-1)){
+                    //     alert("客户端证书与该客户绑定的证书不匹配！");
+                    //     return false;
+                    // }
+                    try{
+                        iesign.HashAlgorithm=hashAlgorithm;
+                        iesign.CN=signCert.split(",")[1];
+                        $("#CSIISignature").val(data2sign);	
+                        iesign.SignData= data2sign;
+                        $("#CSIISignature").val(iesign.getSignData());	
+                        if(data2sign==$("#CSIISignature").val()){
+                            $("#loginEwebSubmitId").attr("disabled",false).val("立即登录");
+                            alert(PE_DIGITAL_SIGN_ERROR);
+                            return false;
+                        }
+                        if($("#CSIISignature").val()=='E:1000'){
+                            $("#loginEwebSubmitId").attr("disabled",false).val("立即登录");
+                            alert("数据签名失败！");
+                            return false;
+                        }
+                        $("#_CertBase64").val(iesign.SignCert());
+                        $("#loginEwebSubmitId").attr("disabled",false).val("立即登录");
+                        return true;
+                    }catch(e){
+                        alert("数据签名失败！");
+                        return false;
+                    }
+                }
+            }
+			// 提交企业登录
+            function loginEwebSubmit(){
+
+                if($("#loginEwebSubmitId").val() == "读取证书"){
+                    changeToEweb();
+                }else{
+                   if($("#CifName").val()==''){
+                        PEGetElement("EWBEEE").innerHTML = "企业名称不能为空";
+                        return false;
+                    }
+                    if($("#UserName").val()==''){
+                        PEGetElement("EWBEEE").innerHTML = "操作员姓名不能为空";
+                        return false;
+                    }
+					$("#loginEwebSubmitId").attr("disabled",true).val("登录中，请稍等...");
+                    if($("#LoginType").val()=='C'){
+                        var data2Sign="<?xml version=\"1.0\" encoding=\"utf-8\"?><T><D><M><k>交易名称：</k><v>登录</v></M><M><k>企业名称：</k><v>"+$("#CifName").val()+"</v></M><M><k>操作员姓名：</k><v>"+$("#UserName").val()+"</v></M></D>"+
+                        "<E><M><k>Timestamp</k><v>"+tsEWEB+"</v></M><M><k>CifNo</k><v>"+$("#CifNo").val()+"</v></M><M><k>CifName</k><v>"+$("#CifName").val()+"</v></M><M><k>UserName</k><v>"+$("#UserName").val()+"</v></M>"+
+                        "<M><k>LoginId</k><v>"+$("#LoginEWEBId").val()+"</v></M><M><k>LoginType</k><v>"+$("#LoginType").val()+"</v></M><M><k>_locale</k><v>"+$("#_locale").val()+"</v></M><M><k>_IsGuoMi</k><v>"+$("#_IsGuoMi").val()+"</v></M></E></T>";
+                        data2Sign+= "_PESignTimestamp="+ tsEWEB;
+                        if(!PESignCZ(data2Sign)){
+                            $("#loginEwebSubmitId").attr("disabled",false).val("立即登录");
+                            return false;
+                        }
+                    }
+                    var postLoginParams = {
+                        CSIISignature:$("#CSIISignature").val(),
+                        LoginType:"C",
+                        _CertBase64:$("#_CertBase64").val(),
+                        CertCN:$("#CertCN").val(),
+                        CifNo:$("#CifNo").val(),
+                        LoginId:$("#LoginEWEBId").val(),
+                        CifName:$("#CifName").val(),
+                        UserName:$("#UserName").val(),
+                        _MacAddress:$("#_MacAddress").val(),
+                        CifName_div:$("#CifName_div").val(),
+                        UserName_div:$("#UserName_div").val(),
+                        _locale:$("#_locale").val(),
+                        _IsGuoMi:$("#_IsGuoMi").val()
+                    }
+                    remoteEWebPost("login4guomi.do", postLoginParams, function(data){
+                        $("#loginEwebSubmitId").attr("disabled",false).val("立即登录");
+						if(data.RejCode=="validation.cif_not_active"){
+							var CifNo = data.CifNo;
+							var CifName = data.CifName;
+							window.location.href = EWEBURLPATH + "cifActivePre.do?CifNo="+CifNo+"&CifName="+CifName+"";
+						}else if(data.RejCode != "" && data.RejCode != null){
+                            PEGetElement("EWBEEE").innerText=data._RejMessage; 
+                            return;
+                        }else{
+                            window.location.href = EWEBURLPATH + "main.do?CertRemindFlag=1"
+                    }
+                    });
+                }
+            } 
+
+            function commGoTargets(index){
+                // 个人网银找回密码
+                if(index === 2){
+                    window.location.href = PWEBURLPATH + "ResetChannelPre.do";
+                    return;
+                }
+                // 个人网银模拟操作
+                if(index === 3){
+                    window.location.href = "http://ebank.bankcz.com:7443/html/pweb/index1.html";
+                    return;
+                }
+                // 个人回单验证
+                if(index === 4){
+                    // window.location.href =  "https://ebank.bankcz.com:7443/pweb/ElectReceptPrintPreOutLogin.do";
+                    window.location.href =  PWEBURLPATH + "ElectReceptPrintPreOutLogin.do";
+                    return;
+                }
+                // 个人安全指引
+                if(index === 6){
+                    window.location.href = PWEBURLPATH + "SecurityGuide.do";
+                    return;
+                }
+                // 个人放点心诈骗专区
+                if(index === 7){
+                    window.location.href = PWEBURLPATH + "TelecomFraud.do";
+                    return;
+                }
+                if(index === 9){
+                    window.location.href = PWEBURLPATH + "DownLoadCentre.do";
+                    return;
+                }
+                if(index === 10){
+                    $('#detailInformation').modal('show');
+                }
+            }
+            //个人网银加载提示图片
+            function changeToPweb(){
+                var imgMark = $("#tokenImgDivId").css('display');
+                if(imgMark == 'none'){
+                    $(".depositImg").show();
+                }else{
+                    $(".depositImg").hide();
+                }
+            }
+        </script>
+    </body>
+</html>

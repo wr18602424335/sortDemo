@@ -1,0 +1,346 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.fl{
+    float:left;
+}
+.fr{
+    float: right;
+}
+.w70{width: 70% !important;}
+.mb5{margin-bottom: 5px !important;}
+html,body{
+    /* height: 762px;
+    width:1256px; */
+    height: 100%;
+    width: 100%;
+}
+#mainPage{
+    width: 100%;
+    height: 100%;
+    /* background-image: url("../images/bg/bg1.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%; */
+    position: relative;
+    overflow: hidden;
+    background-image: url('../../images/czyh/bg/bg1.png');
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+}
+#changeBgDiv{
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/bg/bg1.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+video{
+    object-fit: fill;
+}
+.space{margin-left: 150px;}
+.space:first-child{margin-left: 0px;}
+/* 中心样式 */
+#loginContent{
+    width: 359px;
+    height: 396px;
+    background: #ffffffe3;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.27);
+ /*   opacity: 0.8;  */
+    border-radius: 7px;
+    overflow: hidden;
+    position: absolute;
+    top: 45px;
+    left: calc((100% - 359px) / 2);
+}
+#loginTitleDiv{
+    overflow: hidden;
+    margin-top: 30px;
+    padding: 0 60px;
+    cursor: pointer;
+}
+.loginTitle{
+    line-height: 26px;
+    font-size: 16px;
+    color: #666666;
+}
+.loginSelected{
+    color:#1B84D9;
+    border-bottom: 2px solid #1B84D9;
+}
+#loginDetail{
+    margin-top: 18px;
+}
+.loginPage{
+    width: calc(100% - 60px);
+    margin: 0 auto;
+}
+.loginInputDiv{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 32px;
+    /*border: 2px solid #ccc;*/
+    border: 1px solid #ececec;
+    border-radius: 4px;
+    margin-bottom: 18px;
+    background: #fff;
+}
+.input_front_img{
+    position: absolute;
+    top: 6px;
+    left: 9px;
+}
+.loginInput{
+    width: 100%;
+    height: 32px;
+    border: none;
+    outline: none;
+    padding: 0 35px;
+}
+.veCode{
+    width: 90px;
+    height: 38px;
+    background-image: url("../../images/czyh/veCode.png");
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.errorTitle{
+    color: #FF2626;
+    display: block;
+    padding: 5px 0 10px 5px;
+}
+.input_back_img{
+    position: absolute;
+    top: 10px;
+    right: 9px;
+}
+#loginPage1Options{
+    /*overflow: hidden;*/
+    width: 100%;
+}
+.loginOption{
+    font-size: 14px;
+	letter-spacing:5px;
+    cursor: pointer;
+    color: #333;
+    line-height: 12px;
+}
+.loginOption:hover{
+    color: #666666;
+}
+.loginOptionLine{
+    line-height: 12px;
+    font-size: 10px;
+    margin: 0 16px;
+}
+.loginBtn,.loginBtn2{
+    width: 100%;
+    height: 34px;
+    background: linear-gradient(0deg, #1B84D9, #48A3ED);
+    border-radius: 2px;
+    line-height: 34px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+.loginBtn{
+    margin-top: 8px;
+}
+.loginBtn2{
+    margin-top:49px;
+}
+.loginDesc{
+    margin-top: 5px;
+}
+.loginDescLine{
+    font-size: 12px;
+    color: #666;
+    line-height: 22px;
+}
+#loginPage_company{
+    display: none;
+}
+/* 通知 */
+.noticeDiv{
+    width: calc(100% - 600px);
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px;
+    position: absolute;
+    top: 8px;
+    color: #333;
+    overflow: hidden;
+    display: none;
+    left: calc((100% - (100% - 600px)) / 2);
+    background-image: linear-gradient(to right ,rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.44) 50%, rgba(0, 0, 0, 0));
+}
+#noticeList{
+    position: absolute;
+    top: 0;
+    height: 30px;
+    display: block;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* 底部样式 */
+#bottomPage{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(95, 102, 234, 0.2);
+}
+#bottom_nav{
+    margin-left: 45px;
+    margin-top: 15px;
+}
+#bottom_nav_desc{
+    margin-top: 15px;
+    margin-left: 9px;
+}
+.bottom_title{
+    font-size: 14px;
+    color: #fff;
+}
+.bottom_content{
+    overflow: hidden;
+    max-width: 175px;
+    margin-top: 8px;
+}
+.bottom_content_link,.bottom_content_line{
+    font-size: 12px;
+    color: #fff;
+    margin-top: 1px;
+}
+.bottom_content_line{
+    margin: 1px 5px;
+}
+.bottom_content_link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+#bottom_help{
+    margin-left: 19px;
+    margin-top: 15px;
+}
+.qrcode1,.qrcode2{
+    width: 60px;
+    margin-top: 8px;
+}
+.qrcode1{
+    margin-left: 42px;
+}
+.qrcode2{
+    margin-left: 30px;
+}
+.qrtitle{
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+#bottom_desc{
+    width: fit-content;
+    overflow: hidden;
+    margin-top: 6px;
+    margin-left: 23px;
+}
+.bottom_desc_line{
+    font-size: 12px;
+    color: #666;
+    line-height: 20px;
+}
+.bottomPageDiv{
+    /*width: fit-content;*/
+    height: 100%;
+    margin: 0 auto;
+}
+.vsCarousel-box img{
+    height: 100%;
+}
+/* CSII Login Style Begin By Kevin 2020.10.28 */
+.tokenInputDiv{
+    width: 140px;
+    height: 32px;
+    border: none;
+    outline: none;
+    padding: 0 6px 0 35px;
+}
+.genTokenImgClass{
+    margin-top: -3px;
+    height: 30px;
+    width: 69px;
+}
+.loginInputBtn{
+    width: 100%;
+    height: 34px;
+    background: linear-gradient(0deg, #1B84D9, #48A3ED);
+    border-radius: 2px;
+    line-height: 34px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    margin-top: 8px;
+}
+.loginInputBtn:active,
+.loginInputBtn:disabled,
+.loginBtn2:active,
+.loginBtn2:disabled{
+    background: linear-gradient(0deg, #11548a, #1f73b7);
+}
+
+.noborder{
+    outline: none;
+    border: none;
+}
+.loginInputEweb{
+    width: 260px;
+    height: 32px;
+    border: none;
+    outline: none;
+    padding: 0 0 0 35px;
+}
+.errorEWEBTitle{
+    color: #FF2626;
+    display: block;
+    padding: 5px 0 10px 5px;
+    position: absolute;
+    word-break: break-all;
+    margin-right: 30px;
+    text-align: justify;
+    margin-top: -12px;
+    overflow-y: auto;
+    height: 38px;
+}
+
+.bottomList{
+    overflow: hidden;
+    width:100%;
+}
+.bottomList li{
+    font-size: 19px;
+    list-style: none;
+    float: left;
+    width:30%;
+    height:60px;
+    line-height: 60px;
+    text-align: center;
+    color:#fff;
+    cursor: pointer;
+}
+.bottomList li.partLine{width:5%;}
+.depositImg{
+    width: 142px;
+    height: 58px;
+    margin-top: 10px;
+    float: right;
+}
+/* CSII Login Style End By Kevin 2020.10.28 */
